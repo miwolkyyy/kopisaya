@@ -1,0 +1,4 @@
+1-> ganti tambol pada chart (a#) dengan button 
+2-> tmbahkan tobol close pada slider 
+3-> buat card pada slider body 
+4-> buat semenarik mungkin 🤔 

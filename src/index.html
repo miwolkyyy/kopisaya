@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- ==================== style css   ====================-->
+    <link rel="stylesheet" href="style.css" />
+    <!-- ==================== style css end   ====================-->
+    <!-- ==================== font awsome   ====================-->
+    <script src="https://kit.fontawesome.com/121b557acd.js" crossorigin="anonymous"></script>
+    <!-- ==================== font awsome end   ====================-->
+    <!-- ==================== alpine js   ====================-->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- ==================== alpine js   end ====================-->
+    <!-- ==================== animate css   ====================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- ==================== animate css   end ====================-->
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="../asset/logo/logo.png" alt="" />
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#product">Product</a></li>
+          <li><a href="#map">Location</a></li>
+        </ul>
+      </div>
+      <div class="chart" x-data="$store.chart">
+        <button class="chart-btn"><i class="fa-solid fa-cart-shopping"></i> <span x-text="$store.chart.quantity"></span></button>
+      </div>
+    </nav>
+    <section id="about" class="about">
+      <div class="presentation">
+        <h1>coffe.com</h1>
+        <h5>temukan kenikatan berbagai kopi dalam negri hanya disini</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum culpa debitis vel ipsam aut deleniti, ad enim corporis sequi atque voluptatum excepturi eligendi! Ab voluptas perferendis, asperiores harum inventore sed.</p>
+      </div>
+      <div class="about-img">
+        <img src="../asset/jumbotron/jumbo.jpg" alt="" />
+      </div>
+    </section>
+    <section id="product" class="product" x-data="pruducts">
+      <div class="product-container">
+        <template x-for="(item, index) in items" x-key="index">
+          <div class="card">
+            <div class="name">
+              <h3 x-text="`${item.name}`"></h3>
+            </div>
+            <div class="card-img">
+              <img :src="`../asset/product/${item.img}`" :alt="item.name" />
+            </div>
+            <div class="card-price">
+              <p x-text="`${item.price}`"></p>
+            </div>
+            <div class="card-info" x-data="">
+              <button type="button"><i class="fa-solid fa-cart-shopping" @click="$store.chart.add(item)"></i></button>
+              <button type="button"><i class="fa-solid fa-eye"></i></button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+    <!-- location -->
+    <section class="map" id="map">
+      <div class="map-wrap">
+        <div class="map-des">
+          <h1>temukan kami di</h1>
+        </div>
+        <div class="main-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d528644.5056452671!2d-124.92179431096608!3d-36.10711441828869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x68b8066308a0300f%3A0x54d79b0bb6ab56f8!2sSamudra%20Pasifik%20Selatan!5e1!3m2!1sid!2sid!4v1722267786647!5m2!1sid!2sid"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="credit">
+        <p>created by <a href="https://www.instagram.com/liii_pai/" target="_blank">im lipai</a></p>
+      </div>
+      <div class="sosmed">
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/liii_pai/"><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/?locale=id_ID"><i class="fa-brands fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="https://web.whatsapp.com/"><i class="fa-brands fa-whatsapp"></i></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <!-- <div class="slider"> -->
+    <div class="slider-body" x-data="">
+      <button type="button" class="closed"><i class="fa-solid fa-xmark" style="color: #ffffff"></i></button>
+      <template x-for="(item ,index) in $store.chart.items" x-keys="index">
+        <div class="slider-item">
+          <div class="item-img">
+            <img :src="`../asset/product/${item.img}`" alt="" />
+          </div>
+          <div class="item-product">
+            <div class="product-name">
+              <h3 x-text="item.name"></h3>
+              <span x-text="item.quantity"> x</span>
+            </div>
+            <div class="product-price">
+              <p x-text="item.total"></p>
+            </div>
+            <div class="product-icon">
+              <button type="button" @click="$store.chart.add(item)"><i class="fa-solid fa-plus" style="color: #ffffff"></i></button>
+              <button type="button" @click="$store.chart.remove(item.id)"><i class="fa-solid fa-minus" style="color: #ffffff"></i></button>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div class="total" x-data="">
+        <h4>total: <span x-text="$store.chart.total"></span></h4>
+      </div>
+    </div>
+    <!-- </div> -->
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
